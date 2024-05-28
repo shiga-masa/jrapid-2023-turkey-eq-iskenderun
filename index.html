@@ -69,7 +69,7 @@
             var style = {
                 color: "#3388ff",
                 weight: 2,
-                opacity: 1.0,
+                opacity: 0,
                 fillOpacity: 0.2
             };
 
@@ -86,6 +86,39 @@
             return style;
         }
 
+        // Load and style Isk_MT_subsidiary_freq.geojson
+        function getColor(d) {
+            return d > 5 ? '#800026' :
+                   d > 4 ? '#BD0026' :
+                   d > 3 ? '#E31A1C' :
+                   d > 2 ? '#FC4E2A' :
+                   d > 1 ? '#FD8D3C' :
+                   d > 0.5 ? '#FEB24C' :
+                             '#FFEDA0';
+        }
+
+        function onEachFeature(feature, layer) {
+            if (feature.properties) {
+                var popupContent = '<table>';
+                for (var prop in feature.properties) {
+                    popupContent += '<tr><th>' + prop + '</th><td>' + feature.properties[prop] + '</td></tr>';
+                }
+                popupContent += '</table>';
+                layer.bindPopup(popupContent);
+            }
+        }
+
+        function pointToLayer(feature, latlng) {
+            return L.circleMarker(latlng, {
+                radius: 8,
+                fillColor: getColor(feature.properties['Dominant Freq2']),
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            });
+        }
+
         fetch('src/Isk_local_topography.geojson')
         .then(response => response.json())
         .then(data => {
@@ -93,6 +126,17 @@
                 style: styleFeature
             }).addTo(map);
             overlays["GeoJSON Layer"] = geoJsonLayer;
+            L.control.layers(baseLayers, overlays).addTo(map);
+        });
+
+        fetch('src/Isk_MT_subsidiary_freq.geojson')
+        .then(response => response.json())
+        .then(data => {
+            var geoJsonLayer = L.geoJSON(data, {
+                pointToLayer: pointToLayer,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+            overlays["Frequency Layer"] = geoJsonLayer;
             L.control.layers(baseLayers, overlays).addTo(map);
         });
 
