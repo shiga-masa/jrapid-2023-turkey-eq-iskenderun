@@ -67,20 +67,18 @@
         // GeoJSON layer
         function styleFeature(feature) {
             var style = {
-                color: "#3388ff",
-                weight: 2,
+                color: "#000000",
+                weight: 1,
                 opacity: 0,
-                fillOpacity: 0.2
+                fillOpacity: 0
             };
 
-            if (feature.properties.name === "specificName") {
-                style.color = "#ff7800";
-                style.weight = 3;
+            if (feature.properties.name === "Canal") {
+                style.color = "#a6cee3";
                 style.fillOpacity = 0.5;
-            } else if (feature.properties.name === "anotherName") {
-                style.color = "#00ff00";
-                style.weight = 1;
-                style.fillOpacity = 0.3;
+            } else if (feature.properties.name === "Marsh\\Pond") {
+                style.color = "#2c7eb4";
+                style.fillOpacity = 0.5;
             }
 
             return style;
@@ -88,13 +86,11 @@
 
         // Load and style Isk_MT_subsidiary_freq.geojson
         function getColor(d) {
-            return d > 5 ? '#800026' :
-                   d > 4 ? '#BD0026' :
-                   d > 3 ? '#E31A1C' :
-                   d > 2 ? '#FC4E2A' :
-                   d > 1 ? '#FD8D3C' :
-                   d > 0.5 ? '#FEB24C' :
-                             '#FFEDA0';
+            return d > 1.402285 ? '#2b83ba' :
+                   d > 1.326904 ? '#abdda4' :
+                   d > 1.2 ? '#ffffbf' :
+                   d > 1.054688 ? '#fdae61' :
+                   d > 0.726318 ? '#d7191c' :
         }
 
         function onEachFeature(feature, layer) {
