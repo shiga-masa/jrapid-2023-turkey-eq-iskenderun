@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet Map</title>
+    <title>JRAPID İskenderun</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -18,30 +18,18 @@
     </style>
 </head>
 <body>
-    <h1>Leaflet Map Example</h1>
     <div id="map"></div>
     <div id="readme"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var map = L.map('map').setView([36.5885726,36.1705218], 15);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var marker = L.marker([51.5, -0.09]).addTo(map)
-            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-            .openPopup();
-
-        // Fetch README.md and render it
-        fetch('README.md')
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('readme').innerHTML = marked(text);
-            })
-            .catch(error => console.error('Error fetching README:', error));
     </script>
 </body>
 </html>
