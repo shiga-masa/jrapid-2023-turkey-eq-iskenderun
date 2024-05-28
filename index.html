@@ -7,13 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map {
-            height: 600px;
-        }
-        #readme {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
+            height: 1200px;
         }
     </style>
 </head>
@@ -26,9 +20,23 @@
     <script>
         var map = L.map('map').setView([36.5885726,36.1705218], 15);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+        var satellite = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'
+        });
+
+        // Layer control
+        var baseLayers = {
+            "Streets": streets,
+            "Satellite": satellite
+        };
+
+        var overlays = {};
+
+        L.control.layers(baseLayers, overlays).addTo(map);
 
     </script>
 </body>
