@@ -65,13 +65,36 @@
         var overlays = {};
 
         // GeoJSON layer
+        function styleFeature(feature) {
+            var style = {
+                color: "#3388ff",
+                weight: 2,
+                opacity: 1.0,
+                fillOpacity: 0.2
+            };
+
+            if (feature.properties.name === "specificName") {
+                style.color = "#ff7800";
+                style.weight = 3;
+                style.fillOpacity = 0.5;
+            } else if (feature.properties.name === "anotherName") {
+                style.color = "#00ff00";
+                style.weight = 1;
+                style.fillOpacity = 0.3;
+            }
+
+            return style;
+        }
+
         fetch('src/Isk_local_topography.geojson')
-            .then(response => response.json())
-            .then(data => {
-                var geoJsonLayer = L.geoJSON(data).addTo(map);
-                overlays["GeoJSON Layer"] = geoJsonLayer;
-                L.control.layers(baseLayers, overlays).addTo(map);
-            });
+        .then(response => response.json())
+        .then(data => {
+            var geoJsonLayer = L.geoJSON(data, {
+                style: styleFeature
+            }).addTo(map);
+            overlays["GeoJSON Layer"] = geoJsonLayer;
+            L.control.layers(baseLayers, overlays).addTo(map);
+        });
 
     </script>
 </body>
