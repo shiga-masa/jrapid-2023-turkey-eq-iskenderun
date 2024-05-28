@@ -58,21 +58,11 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // GeoJSON layer
-        var geoJsonLayer;
-        fetch('src/Isk_local_topography.geojson')
-            .then(response => response.json())
-            .then(data => {
-                geoJsonLayer = L.geoJSON(data).addTo(map);
-            });
-            
         var baseLayers = {
             "Streets": streets,
         };
 
         var overlays = {};
-
-        L.control.layers(baseLayers, overlays).addTo(map);
 
         // GeoJSON layer
         fetch('src/Isk_local_topography.geojson')
