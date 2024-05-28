@@ -16,7 +16,7 @@
     <div id="readme"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://unpkg.com/leaflet-geopackage@0.1.0/dist/leaflet-geopackage.browser.min.js"></script>
     <script>
         var map = L.map('map').setView([36.5885726,36.1705218], 15);
 
@@ -24,17 +24,25 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var satellite = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'
-        });
+        // GeoPackage layer
+        var geoPackageLayer;
+        fetch('src/Isk_local_topography_2.gpkg')
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => {
+                L.geoPackage(arrayBuffer).getLayers(layer => {
+                    geoPackageLayer = layer;
+                    geoPackageLayer.addTo(map);
+                });
+            });
 
         // Layer control
         var baseLayers = {
             "Streets": streets,
-            "Satellite": satellite
         };
 
-        var overlays = {};
+        var overlays = {
+            "GeoPackage Layer": geoPackageLayer
+        };
 
         L.control.layers(baseLayers, overlays).addTo(map);
 
