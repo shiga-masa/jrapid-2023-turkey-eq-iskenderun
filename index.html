@@ -65,17 +65,20 @@
             .then(data => {
                 geoJsonLayer = L.geoJSON(data).addTo(map);
             });
-            
-        // Layer control
-        var baseLayers = {
-        "Streets": streets,
-        };
 
-        var overlays = {
-            "GeoJSON Layer": geoJsonLayer
-        };
+        var overlays = {};
 
         L.control.layers(baseLayers, overlays).addTo(map);
+
+        // GeoJSON layer
+        fetch('src/Isk_local_topography.geojson')
+            .then(response => response.json())
+            .then(data => {
+                var geoJsonLayer = L.geoJSON(data).addTo(map);
+                overlays["GeoJSON Layer"] = geoJsonLayer;
+                L.control.layers(baseLayers, overlays).addTo(map);
+            });
+
     </script>
 </body>
 </html>
