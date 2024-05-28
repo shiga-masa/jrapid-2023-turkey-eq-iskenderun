@@ -126,7 +126,6 @@
                 style: styleFeature
             }).addTo(map);
             overlays["GeoJSON Layer"] = geoJsonLayer;
-            L.control.layers(baseLayers, overlays).addTo(map);
         });
 
         fetch('src/Isk_MT_subsidiary_freq.geojson')
