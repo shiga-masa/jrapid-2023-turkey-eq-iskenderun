@@ -95,8 +95,11 @@
         function onEachFeature(feature, layer) {
             if (feature.properties) {
                 var popupContent = '<table>';
+                const conditional_keys = ["Label", "Lat", "Long", "Dominant Freq2"];
                 for (var prop in feature.properties) {
-                    popupContent += '<tr><th>' + prop + '</th><td>' + feature.properties[prop] + '</td></tr>';
+                    if (!conditional_keys.includes(prop)) {
+                        popupContent += '<tr><th>' + prop + '</th><td>' + feature.properties[prop] + '</td></tr>';
+                    }
                 }
                 popupContent += '</table>';
                 layer.bindPopup(popupContent);
