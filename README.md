@@ -14,4 +14,4 @@ An orternative website is available to visualize our result. Please visit [this 
 
 # Citation
 Please refer the following article to use this dataset
-> Shiga, M, Kiyota, T., Tobita, T., Ikeda, T., Tonuk, G., Akyol, G., Milev, Y. N., Hachino, J., Kariya, N., Kitazono, K., Satoh, K., Kunisawa, M., Ceylan. A. İ., Cicek, F., and Ince, M. B., Subsurface geotechnical characterisics affecting on structural damage in İskenderun, following the 2023 Türkiye-Kahramanmaraş Earthquake Sequence, Soils and Foundations, 2024, (under review)
+> Shiga, M., Kiyota, T., Tobita, T., Ikeda, T., Tonuk, G., Akyol, G., Milev, Y. N., Hachino, J., Kariya, N., Kitazono, K., Kunisawa, M., Satoh, K., Ceylan. A. İ., Çiçek, F., and Ince, M. B., Subsurface geotechnical characterisics affecting on structural damage in İskenderun, following the 2023 Türkiye-Kahramanmaraş Earthquake Sequence, Soils and Foundations, 2024, (under review)
