@@ -98,7 +98,7 @@
                 var popupContent = '<table>';
                 const conditional_keys = ["Label", "Lat", "Long", "Dominant Freq2"];
                 for (var prop in feature.properties) {
-                    if (!conditional_keys.includes(prop)) {
+                    if (conditional_keys.includes(prop)) {
                         popupContent += '<tr><th>' + prop + '</th><td>' + feature.properties[prop] + '</td></tr>';
                     }
                 }
