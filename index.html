@@ -60,7 +60,7 @@
 
         // GeoJSON layer
         var geoJsonLayer;
-        fetch('src/Isk_local_topography_2.geojson')
+        fetch('src/Isk_local_topography.geojson')
             .then(response => response.json())
             .then(data => {
                 geoJsonLayer = L.geoJSON(data).addTo(map);
