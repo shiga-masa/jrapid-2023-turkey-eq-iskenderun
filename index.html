@@ -65,6 +65,10 @@
             .then(data => {
                 geoJsonLayer = L.geoJSON(data).addTo(map);
             });
+            
+        var baseLayers = {
+            "Streets": streets,
+        };
 
         var overlays = {};
 
