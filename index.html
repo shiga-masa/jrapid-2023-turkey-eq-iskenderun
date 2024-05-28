@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
+        #map-container {
+            display: flex;
+            justify-content: center;
+        }
         #map {
             max-width: 800px;
+            width: 100%;
             height: 600px;
         }
         #data-links {
@@ -42,7 +47,9 @@
     </style>
 </head>
 <body>
-    <div id="map"></div>
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
     <div id="data-links">
         <h2>Overview</h2>
         <p>This map shows the results from the project of JSPS KAKENHI Grant Number 22K21372 and JST J-RAPID Program Grant Number JPMJJR2304.</p>
