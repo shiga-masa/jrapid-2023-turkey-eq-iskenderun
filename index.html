@@ -102,6 +102,19 @@
                 }
                 popupContent += '</table>';
                 layer.bindPopup(popupContent);
+
+                // タップイベントを追加
+                layer.on({
+                    click: function (e) {
+                        this.openPopup();
+                    },
+                    mouseover: function (e) {
+                        this.openPopup();
+                    },
+                    mouseout: function (e) {
+                        this.closePopup();
+                    }
+                });
             }
         }
 
